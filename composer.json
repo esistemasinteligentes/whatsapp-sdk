@@ -1,6 +1,6 @@
 {
-  "name": "esi/whatsapp-sdk",
-  "description": "Connection SDK Whatsapp API ESI",
+  "name": "esistemasinteligentes/whatsapp-sdk",
+  "description": "Connection SDK Whatsapp API E Sistemas Inteligentes",
   "type": "library",
   "license": "proprietary",
   "require": {
