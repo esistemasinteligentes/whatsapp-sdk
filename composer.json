@@ -1,0 +1,22 @@
+{
+  "name": "esi/whatsapp-sdk",
+  "description": "Connection SDK Whatsapp API ESI",
+  "type": "library",
+  "license": "proprietary",
+  "require": {
+    "php": "^7.3",
+    "guzzlehttp/guzzle": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Esi\\WhatsappSdk\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "E Sistemas Inteligentes",
+      "email": "contato@esistemsinteligentes.com.br"
+    }
+  ],
+  "minimum-stability": "dev"
+}
