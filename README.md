@@ -7,7 +7,7 @@ Connection SDK Whatsapp API ESI
 This project using composer.
 
 ```
-$ composer require esi/whatsapp-sdk
+$ composer require esistemasinteligentes/whatsapp-sdk
 ```
 
 ## Uso
