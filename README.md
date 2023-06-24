@@ -17,7 +17,7 @@ $ composer require esi/whatsapp-sdk
 
 use ESI\WhatsappSDK;
 
-$password = new WhatsappSdk('instance', 'token');
+$whatsapp = new WhatsappSdk('instance', 'token');
 ```
 
 ## Contato
