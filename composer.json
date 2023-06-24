@@ -10,7 +10,10 @@
   "autoload": {
     "psr-4": {
       "Esi\\WhatsappSdk\\": "src/"
-    }
+    },
+    "files": [
+      "src/WhatsappSdk.php"
+    ]
   },
   "authors": [
     {
