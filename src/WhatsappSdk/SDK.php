@@ -1,12 +1,12 @@
 <?php
 
-namespace Esi\WhatsappSdk;
+namespace WhatsappSdk;
 
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
-class WhatsappInstance
+class SDK
 {
     const url = "https://wapp.esistemasinteligentes.com.br";
 
