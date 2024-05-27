@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitea6a4d5acd7e8ea8164b1493982a2d0a
+class ComposerStaticInit21fede9d1e651c7587eafc3e8356d8ef
 {
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
@@ -13,6 +13,10 @@ class ComposerStaticInitea6a4d5acd7e8ea8164b1493982a2d0a
     );
 
     public static $prefixLengthsPsr4 = array (
+        'W' => 
+        array (
+            'WhatsappSdk\\' => 12,
+        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
@@ -24,13 +28,13 @@ class ComposerStaticInitea6a4d5acd7e8ea8164b1493982a2d0a
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
-        'E' => 
-        array (
-            'Esi\\WhatsappSdk\\' => 16,
-        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'WhatsappSdk\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
@@ -52,10 +56,6 @@ class ComposerStaticInitea6a4d5acd7e8ea8164b1493982a2d0a
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
-        'Esi\\WhatsappSdk\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
     );
 
     public static $classMap = array (
@@ -65,9 +65,9 @@ class ComposerStaticInitea6a4d5acd7e8ea8164b1493982a2d0a
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitea6a4d5acd7e8ea8164b1493982a2d0a::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitea6a4d5acd7e8ea8164b1493982a2d0a::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitea6a4d5acd7e8ea8164b1493982a2d0a::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit21fede9d1e651c7587eafc3e8356d8ef::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit21fede9d1e651c7587eafc3e8356d8ef::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit21fede9d1e651c7587eafc3e8356d8ef::$classMap;
 
         }, null, ClassLoader::class);
     }

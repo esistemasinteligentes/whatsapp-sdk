@@ -1,28 +1,28 @@
 <?php return array(
     'root' => array(
-        'name' => 'esi/whatsapp-sdk',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'name' => 'esistemasinteligentes/whatsapp-sdk',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '3a75dbbae8b1cc5b36e2f834fb473ea79f2a86a7',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'esi/whatsapp-sdk' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+        'esistemasinteligentes/whatsapp-sdk' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '3a75dbbae8b1cc5b36e2f834fb473ea79f2a86a7',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
         'guzzlehttp/guzzle' => array(
-            'pretty_version' => '7.7.x-dev',
-            'version' => '7.7.9999999.9999999-dev',
-            'reference' => 'fb7566caccf22d74d1ab270de3551f72a58399f5',
+            'pretty_version' => '7.9.x-dev',
+            'version' => '7.9.9999999.9999999-dev',
+            'reference' => '1ee81e5fc8613ba1ad0b095f40e17c119dd4cc93',
             'type' => 'library',
             'install_path' => __DIR__ . '/../guzzlehttp/guzzle',
             'aliases' => array(),
@@ -31,7 +31,7 @@
         'guzzlehttp/promises' => array(
             'pretty_version' => '2.0.x-dev',
             'version' => '2.0.9999999.9999999-dev',
-            'reference' => '4a94655427efd6906ed3eb628c79693291264713',
+            'reference' => 'ab801747cbf7d394d4d435c34364704f9bf048e6',
             'type' => 'library',
             'install_path' => __DIR__ . '/../guzzlehttp/promises',
             'aliases' => array(),
@@ -40,7 +40,7 @@
         'guzzlehttp/psr7' => array(
             'pretty_version' => '2.6.x-dev',
             'version' => '2.6.9999999.9999999-dev',
-            'reference' => 'b635f279edd83fc275f822a1188157ffea568ff6',
+            'reference' => 'a243f80a1ca7fe8ceed4deee17f12c1930efe662',
             'type' => 'library',
             'install_path' => __DIR__ . '/../guzzlehttp/psr7',
             'aliases' => array(),
@@ -49,7 +49,7 @@
         'psr/http-client' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '0955afe48220520692d2d09f7ab7e0f93ffd6a31',
+            'reference' => 'bb5906edc1c324c9a05aa0873d40117941e5fa90',
             'type' => 'library',
             'install_path' => __DIR__ . '/../psr/http-client',
             'aliases' => array(
@@ -64,14 +64,12 @@
             ),
         ),
         'psr/http-factory' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => '6d70f402f0eddb2b154b22950b5381bbf5b28469',
+            'pretty_version' => '1.1.0',
+            'version' => '1.1.0.0',
+            'reference' => '2b4765fddfe3b508ac62f829e852b1501d3f6e8a',
             'type' => 'library',
             'install_path' => __DIR__ . '/../psr/http-factory',
-            'aliases' => array(
-                0 => '1.0.x-dev',
-            ),
+            'aliases' => array(),
             'dev_requirement' => false,
         ),
         'psr/http-factory-implementation' => array(
@@ -109,11 +107,11 @@
         'symfony/deprecation-contracts' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '7c3aff79d10325257a001fcf92d991f24fc967cf',
+            'reference' => '0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/deprecation-contracts',
             'aliases' => array(
-                0 => '3.4.x-dev',
+                0 => '3.5.x-dev',
             ),
             'dev_requirement' => false,
         ),

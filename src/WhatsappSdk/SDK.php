@@ -1,6 +1,6 @@
 <?php
 
-namespace WhatsappSdk;
+// namespace WhatsappSdk;
 
 use Exception;
 use GuzzleHttp\Client;
@@ -12,13 +12,15 @@ class SDK
 
     protected $_http;
     protected $instance_key;
-    function __construct($instance_key = null, $token = null)
+    protected $globalToken;
+    function __construct($instance_key = null, $globalToken = null)
     {
         $this->instance_key = $instance_key ?? "deployment";
+        $this->globalToken = $globalToken;
         $this->_http = new Client([
             'base_uri' => self::url,
             "headers" => [
-                'token-esi' => $token
+                'Apikey' => $globalToken,
             ],
         ]);
     }
@@ -27,8 +29,14 @@ class SDK
     {
         try {
             $response = $this->_http->request(
-                'GET',
-                "/instance/init?key={$this->instance_key}",
+                'POST',
+                "/instance/create",
+                [
+                    "json" => [
+                        "instanceName" => $this->instance_key,
+                        "description" => "API"
+                    ]
+                ]
             );
 
             $parseResponse = json_decode($response->getBody()->getContents(), true);
@@ -38,6 +46,18 @@ class SDK
         } catch (Exception $e) {
             return $this->errorsParse($e->getMessage(), null, $e->getCode());
         }
+    }
+
+    public function setToken($bearerToken)
+    {
+        // Atualize o cliente Guzzle com o novo token
+        $this->_http = new Client([
+            'base_uri' => self::url,
+            'headers' => [
+                'Apikey' => $this->globalToken,
+                'Authorization' => 'Bearer ' . $bearerToken,
+            ],
+        ]);
     }
 
     public function getSession()
@@ -45,7 +65,12 @@ class SDK
         try {
             $response = $this->_http->request(
                 'GET',
-                "/instance/info?key={$this->instance_key}"
+                "/instance/fetchInstances",
+                [
+                    "query" => [
+                        "instanceName" => $this->instance_key
+                    ]
+                ]
             );
 
             $parseResponse = json_decode($response->getBody()->getContents(), true);
@@ -58,13 +83,31 @@ class SDK
         }
     }
 
-    public function restartSession()
+    public function getSessionStatus()
     {
-        $checkSession = $this->getSession();
-        if (isset($checkSession['error']) && $checkSession['error'] == true) {
-            $this->parseSessionResult($checkSession['content']);
+        try {
+            $response = $this->_http->request(
+                'GET',
+                "/instance/connectionState/" . $this->instance_key,
+            );
+
+            $parseResponse = json_decode($response->getBody()->getContents(), true);
+
+            return $parseResponse;
+        } catch (ClientException $cli) {
+            return $this->errorsParse($cli->getMessage(), $cli->getResponse()->getBody()->getContents(), $cli->getCode());
+        } catch (Exception $e) {
+            return $this->errorsParse($e->getMessage(), null, $e->getCode());
         }
     }
+
+    // public function restartSession()
+    // {
+    //     $checkSession = $this->getSession();
+    //     if (isset($checkSession['error']) && $checkSession['error'] == true) {
+    //         $this->parseSessionResult($checkSession['content']);
+    //     }
+    // }
 
     private function parseSessionResult($content)
     {
@@ -85,7 +128,7 @@ class SDK
         try {
             $response = $this->_http->request(
                 'DELETE',
-                "/instance/delete?key={$this->instance_key}"
+                "/instance/delete/{$this->instance_key}"
             );
 
             $parseResponse = json_decode($response->getBody()->getContents(), true);
@@ -102,7 +145,7 @@ class SDK
         try {
             $response = $this->_http->request(
                 'DELETE',
-                "/instance/logout?key={$this->instance_key}"
+                "/instance/logout/{$this->instance_key}"
             );
 
             $parseResponse = json_decode($response->getBody()->getContents(), true);
@@ -119,7 +162,7 @@ class SDK
         try {
             $response = $this->_http->request(
                 'GET',
-                "/instance/qrbase64?key={$this->instance_key}"
+                "/instance/connect/{$this->instance_key}"
             );
 
             $parseResponse = json_decode($response->getBody()->getContents(), true);
@@ -134,14 +177,21 @@ class SDK
     public function sendMessage(array $info)
     {
         $dados = [];
-        $dados["id"] = $this->parseNumberPrefix($info['telefone']);
-        $dados["message"] = $info['message'];
-        $endPoint = "text";
+        $dados["number"] = $this->parseNumberPrefix($info['telefone']);
+        $dados['options'] = [
+            "delay" => 1200,
+            "presence" => "composing"
+        ];
+        $dados["textMessage"] = [
+            'text' => $info['message']
+        ];
+
+        $endPoint = "sendText";
 
         try {
             $response = $this->_http->request(
                 'POST',
-                "/message/{$endPoint}?key={$this->instance_key}",
+                "/message/{$endPoint}/{$this->instance_key}",
                 [
                     "json" => $dados
                 ]
@@ -203,27 +253,31 @@ class SDK
         }
     }
 
-    public function sendMessageFile(array $info)
+    public function sendMessageFilePDF(array $info)
     {
         try {
             $response = $this->_http->request(
                 'POST',
-                "/message/doc?key={$this->instance_key}",
+                "/message/sendMediaFile/{$this->instance_key}",
                 [
                     "multipart" => [
                         [
-                            "name" => 'file',
+                            'name' => 'number',
+                            'contents' => $this->parseNumberPrefix($info['telefone']),
+                        ],
+                        [
+                            "name" => 'attachment',
                             "contents" => file_get_contents($info['link']),
-                            "filename" => $info['description'],
+                            "filename" => $info['filename'],
                             'Content-type' => 'multipart/form-data, boundary=sendfile',
                             'headers'  => ['Content-Type' => 'application/pdf'],
                         ],
                         [
-                            'name' => 'id',
-                            'contents' => $this->parseNumberPrefix($info['telefone']),
+                            'name' => 'mediatype',
+                            "contents" => 'document',
                         ],
                         [
-                            'name' => 'filename',
+                            'name' => 'caption',
                             "contents" => $info['description'],
                         ]
                     ]
@@ -242,6 +296,7 @@ class SDK
 
     private function parseNumberPrefix($telefone)
     {
+        return "55{$telefone}";
         $telefoneDDD = substr($telefone, 0, 2);
         if ($telefoneDDD >= "30") {
             $telefone = substr($telefone, 3); //ignore o prefix
