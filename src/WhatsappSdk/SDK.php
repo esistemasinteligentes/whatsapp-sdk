@@ -1,6 +1,6 @@
 <?php
 
-// namespace WhatsappSdk;
+namespace WhatsappSdk;
 
 use Exception;
 use GuzzleHttp\Client;
