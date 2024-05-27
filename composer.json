@@ -8,8 +8,8 @@
     "guzzlehttp/guzzle": "^7.0"
   },
   "autoload": {
-    "psr-4": {
-      "WhatsappSdk\\": "src/"
+    "psr-0": {
+      "WhatsappSdk": "src/"
     }
   },
   "authors": [

@@ -13,10 +13,6 @@ class ComposerStaticInit21fede9d1e651c7587eafc3e8356d8ef
     );
 
     public static $prefixLengthsPsr4 = array (
-        'W' => 
-        array (
-            'WhatsappSdk\\' => 12,
-        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
@@ -31,14 +27,10 @@ class ComposerStaticInit21fede9d1e651c7587eafc3e8356d8ef
     );
 
     public static $prefixDirsPsr4 = array (
-        'WhatsappSdk\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -58,6 +50,16 @@ class ComposerStaticInit21fede9d1e651c7587eafc3e8356d8ef
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'W' => 
+        array (
+            'WhatsappSdk' => 
+            array (
+                0 => __DIR__ . '/../..' . '/src',
+            ),
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -67,6 +69,7 @@ class ComposerStaticInit21fede9d1e651c7587eafc3e8356d8ef
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit21fede9d1e651c7587eafc3e8356d8ef::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit21fede9d1e651c7587eafc3e8356d8ef::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit21fede9d1e651c7587eafc3e8356d8ef::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit21fede9d1e651c7587eafc3e8356d8ef::$classMap;
 
         }, null, ClassLoader::class);

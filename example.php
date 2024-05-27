@@ -1,7 +1,9 @@
 <?php
 
+use WhatsappSdk\SDK;
+
 require 'vendor/autoload.php';
-require 'src/WhatsappSdk/SDK.php';
+// require 'src/WhatsappSdk/SDK.php';
 
 // use WhatsappSdk\SDK;
 try {
