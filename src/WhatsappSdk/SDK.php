@@ -8,17 +8,15 @@ use GuzzleHttp\Exception\ClientException;
 
 class SDK
 {
-    const url = "https://wapp.esistemasinteligentes.com.br";
-
     protected $_http;
     protected $instance_key;
     protected $globalToken;
-    function __construct($instance_key = null, $globalToken = null)
+    function __construct($instance_key = null, $globalToken = null, $url = "https://wapp.v1.esistemasinteligentes.com.br")
     {
         $this->instance_key = $instance_key ?? "deployment";
         $this->globalToken = $globalToken;
         $this->_http = new Client([
-            'base_uri' => self::url,
+            'base_uri' => $url,
             "headers" => [
                 'Apikey' => $globalToken,
             ],
