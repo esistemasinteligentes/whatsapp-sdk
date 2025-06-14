@@ -6,17 +6,26 @@ use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * Class SDK
+ * @package WhatsappSdk
+ *
+ * This class provides methods to interact with the WhatsApp API.
+ * It allows you to create and manage sessions, send messages, and handle media files.
+ */
 class SDK
 {
     protected $_http;
     protected $instance_key;
     protected $globalToken;
+    protected $url;
     function __construct($instance_key = null, $globalToken = null, $url = "https://wapp.v1.esistemasinteligentes.com.br")
     {
+        $this->url = $url;
         $this->instance_key = $instance_key ?? "deployment";
         $this->globalToken = $globalToken;
         $this->_http = new Client([
-            'base_uri' => $url,
+            'base_uri' => $this->url,
             "headers" => [
                 'Apikey' => $globalToken,
             ],
@@ -50,7 +59,7 @@ class SDK
     {
         // Atualize o cliente Guzzle com o novo token
         $this->_http = new Client([
-            'base_uri' => self::url,
+            'base_uri' => $this->url,
             'headers' => [
                 'Apikey' => $this->globalToken,
                 'Authorization' => 'Bearer ' . $bearerToken,
